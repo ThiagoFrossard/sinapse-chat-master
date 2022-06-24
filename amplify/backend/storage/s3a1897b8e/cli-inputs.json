@@ -1,0 +1,13 @@
+{
+  "resourceName": "s3a1897b8e",
+  "policyUUID": "a1897b8e",
+  "bucketName": "sinapseappchat091ef32caee94ea5800c775d3a1c556a",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
