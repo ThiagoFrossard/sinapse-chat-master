@@ -37,8 +37,7 @@ export default function TabOneScreen() {
 	return (
 		<View style={styles.page}>
         	 <FlatList
-				data={chatRooms
-					.sort((a, b) => b.updatedAt > a.updatedAt)}
+				data={chatRooms.sort((a, b) => b.updatedAt > a.updatedAt)}
 				renderItem={({ item }) => <ChatRoomItem chatRoom={item} />}
 				showsVerticalScrollIndicator={false}
       		/>   
