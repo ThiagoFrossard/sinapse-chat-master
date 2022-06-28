@@ -37,7 +37,7 @@ export default function ({ chatRoom }) {
 		  return
 	  }
 		 DataStore.query(Message, chatRoom.chatRoomLastMessageId).then(setLastMessage)
-	})
+	}, [chatRoom.chatRoomLastMessageId])
 	
 	const onPress = () => {
 		navigation.navigate('ChatRoom', {id: chatRoom.id})

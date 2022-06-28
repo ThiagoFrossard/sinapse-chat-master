@@ -22,7 +22,7 @@ export default function TabOneScreen() {
 					  .filter(
 					   (chatRoomUser) => chatRoomUser.user.id === userData.attributes.sub)
 						.map((chatRoomUser) => chatRoomUser.chatRoom);
-				   setChatRooms(chatRooms);
+				   setChatRooms(chatRooms.sort((a, b) => b.updatedAt > a.updatedAt));
 			  };
 			  fetchChatRooms();
 		});
@@ -37,7 +37,7 @@ export default function TabOneScreen() {
 	return (
 		<View style={styles.page}>
         	 <FlatList
-				data={chatRooms.sort((a, b) => b.updatedAt > a.updatedAt)}
+				data={chatRooms}
 				renderItem={({ item }) => <ChatRoomItem chatRoom={item} />}
 				showsVerticalScrollIndicator={false}
       		/>   
