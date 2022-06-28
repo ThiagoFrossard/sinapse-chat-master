@@ -37,12 +37,7 @@ export default function ({ chatRoom }) {
 		  return
 	  }
 		 DataStore.query(Message, chatRoom.chatRoomLastMessageId).then(setLastMessage)
-	//   const subscription = DataStore.observe(Message, chatRoom.chatRoomLastMessageId).subscribe(msg => {
-	// 	DataStore.query(Message, chatRoom.chatRoomLastMessageId).then(setLastMessage)
-	//   });
-
-	//  subscription
-	}, [])
+	})
 	
 	const onPress = () => {
 		navigation.navigate('ChatRoom', {id: chatRoom.id})
