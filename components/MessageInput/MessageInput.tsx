@@ -107,8 +107,6 @@ export default function MessageInput({ chatRoom, messageReplyTo, removeMessageRe
 		DataStore.save(
 			ChatRoom.copyOf(chatRoom, (updatedChatRoom) => {
 				updatedChatRoom.LastMessage = newMessage;
-				// console.log(updatedChatRoom)
-				// console.log(chatRoom)
 			})
 		);
 	};
