@@ -39,42 +39,42 @@ const GroupInfoScreen = () => {
 
 	const confirmDelete = async (user) => {
 
-    const authData = await Auth.currentAuthenticatedUser()
-    if(chatRoom?.Admin?.id !== authData.attributes.sub) {
-      Alert.alert('Você não é o Administrador desse grupo')
-      return;
-    }
-
-		if (user.id === chatRoom?.Admin?.id) {
-			Alert.alert("Você é o administrador, você não pode se deletar");
-			return;
+		const authData = await Auth.currentAuthenticatedUser()
+		if(chatRoom?.Admin?.id !== authData.attributes.sub) {
+		Alert.alert('Você não é o Administrador desse grupo')
+		return;
 		}
 
-		Alert.alert(
-			"Confirmar",
-			`Você tem certeza que quer deletar ${user.name} do grupo ?`,
-			[
-				{
-					text: "Delete",
-					onPress: () => deleteUser(user),
-					style: "destructive",
-				},
-				{
-					text: "Cancelar",
-				},
-			]
-		);
+			if (user.id === chatRoom?.Admin?.id) {
+				Alert.alert("Você é o administrador, você não pode se deletar");
+				return;
+			}
+
+			Alert.alert(
+				"Confirmar",
+				`Você tem certeza que quer deletar ${user.name} do grupo ?`,
+				[
+					{
+						text: "Delete",
+						onPress: () => deleteUser(user),
+						style: "destructive",
+					},
+					{
+						text: "Cancelar",
+					},
+				]
+			);
 	};
 
 	const deleteUser = async (user) => {
-		const chatRoomUsersToDelete = (await DataStore.query(ChatRoomUser)).filter(
-			(cru) => cru.chatRoom.id === chatRoom?.id && cru.user.id === user.id
-		)
+			const chatRoomUsersToDelete = (await DataStore.query(ChatRoomUser)).filter(
+				(cru) => cru.chatRoom.id === chatRoom?.id && cru.user.id === user.id
+			)
 
-    if(chatRoomUsersToDelete.length > 0){
-      await DataStore.delete(chatRoomUsersToDelete[0])
-    }
-    setAllUsers(allUsers.filter((u) => u.id !== user.id))
+		if(chatRoomUsersToDelete.length > 0){
+		await DataStore.delete(chatRoomUsersToDelete[0])
+		}
+		setAllUsers(allUsers.filter((u) => u.id !== user.id))
 	};
 
 	return (
