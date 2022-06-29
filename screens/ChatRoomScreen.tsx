@@ -21,21 +21,20 @@ export default function ChatRoomScreen() {
   }, [])
 
   useEffect(() => {
-
     fetchMessages()
   }, [chatRoom])
 
   useEffect(() => {
     const subscription = DataStore.observe(MessageModel).subscribe(msg => {
-      if(msg.model === MessageModel && msg.opType === 'INSERT'){
-        setMessages(existingMessage => [msg.element, ...existingMessage])
+      if(msg.element.chatroomID == chatRoom?.id){
+        if(msg.model === MessageModel && msg.opType === 'INSERT'){
+          setMessages(existingMessage => [msg.element, ...existingMessage])
+        }
       }
     })
 
     return () => subscription.unsubscribe()
-  }, [])
-  
-  
+  })
   
   const fetchChatRoom = async () => {
     if(!route.params?.id){
